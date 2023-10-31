@@ -5,20 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
-public class LivroRepositorio {
+public class LivroRepositorio extends BaseRepositorio{
 	
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/Sielanis?autoReconnect=true&useSSL=false";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "root";
-	
-    public String Teste()
-    {
-    	return "teste";
-    }
-    
-	public void InserirLivro(@RequestParam(value="titulo", defaultValue = "") String titulo, @RequestParam(value="autor", defaultValue = "") String autor, @RequestParam(value="paginas", defaultValue = "0") String paginas)
+	public void InserirLivro(String titulo, String autor, String paginas)
 	{
         try (Connection connection = DriverManager.getConnection(URL, USUARIO, SENHA)) {
             String sql = "INSERT INTO Livros (titulo, autor, paginas) VALUES (?,?,?)";
