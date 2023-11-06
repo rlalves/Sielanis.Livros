@@ -1,9 +1,12 @@
 package br.com.sielanis.livros;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.sielanis.livros.entidades.Livro;
 import br.com.sielanis.livros.repositorio.LivroRepositorio;
 
 @RestController
@@ -24,5 +27,11 @@ public class LivroController {
 		livroRepositorio.InserirLivro(titulo, autor, paginas);
 		
 		return "olha o log";
+	}
+	
+	@RequestMapping("/listarlivros")
+	public List<Livro> ListarLivros(){
+		livroRepositorio = new LivroRepositorio();
+		return livroRepositorio.ObterLivros();
 	}
 }
